@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Noto Sans KR", system-ui, sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-[#121212] text-white leading-normal;
+  }
+
+  h2 {
+    @apply text-[24px] leading-[35px] font-bold;
+  }
+
+  span {
+    @apply leading-[17px]
+  } 
+
+  p {
+    @apply leading-[17px];
+  }
+
+  img, video {
+    @apply block max-w-full;
+  }
+
+  ul {
+    @apply list-none p-0 m-0;
+  }
+}
