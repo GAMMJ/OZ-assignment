@@ -1,96 +1,114 @@
-@import 'tailwindcss';
-
-/* =========================
-   Theme (v4 전역 설정)
-   v4는 여기서 변수를 정의하면 
-   자동으로 utility 클래스가 생성됩니다.
-========================= */
-@theme {
-  --font-sans:
-    'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Apple SD Gothic Neo', 'Noto Sans KR',
-    'Arial', 'sans-serif';
-
-  --color-brand-primary: #3b82f6;
-  --color-brand-secondary: #a78bfa;
+/* ========================================
+   전역 설정
+   ======================================== */
+:root {
+  font-family: "OmuDaye", Inter, system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #f5f5f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =========================
-   Base (표준 CSS 사용)
-========================= */
-@layer base {
-  html {
-    font-family: var(--font-sans);
+@font-face {
+  font-family: "OmuDaye";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2") format("woff2");
+  font-weight: normal;
+  font-display: swap;
+}
+
+/* ========================================
+   기본 태그 스타일
+   ======================================== */
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  background-color: #fff;
+  color: #1e1e1e;
+  border-radius: 15px;
+}
+
+ul li span,
+ul li del {
+  margin-right: auto;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fff;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: opacity 0.25s;
+}
+
+button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   미디어 쿼리
+   ======================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
   }
 
-  body {
-    @apply bg-[#dfdfdf] text-[#1e1e1e] antialiased;
-    /* v4에서는 selection 등 세부 설정도 base에서 권장 */
-    &::selection {
-      @apply bg-blue-500/30;
-    }
+  a:hover {
+    color: #747bff;
   }
 
-  /* 타이포그래피 */
-  h1 {
-    @apply text-3xl font-bold tracking-tight;
-  }
-  h2 {
-    @apply text-2xl font-semibold;
-  }
-  h3 {
-    @apply text-xl font-semibold;
-  }
-
-  a {
-    @apply text-blue-400 transition hover:underline;
-  }
   button {
-    @apply cursor-pointer bg-white;
+    background-color: #f9f9f9;
   }
-}
-
-/* =========================
-   Components (v4는 @apply 적극 권장)
-========================= */
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2
-           font-medium transition-all duration-200
-           bg-blue-600 text-white hover:bg-blue-500 active:scale-95
-           disabled:opacity-50 disabled:pointer-events-none;
-  }
-
-  .btn-outline {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2
-           font-medium border border-gray-700
-           text-gray-100 hover:bg-gray-800 active:scale-95;
-  }
-
-  .card {
-    @apply rounded-xl border border-gray-800 bg-gray-900/50 p-4 
-           shadow-sm backdrop-blur-md;
-  }
-
-  .input {
-    @apply rounded-md border border-gray-700 bg-white px-3 py-2
-           text-[#1e1e1e] placeholder-gray-500 transition-shadow
-           focus:outline-none outline-none;
-  }
-}
-
-/* =========================
-   Utilities (v4 커스텀 유틸)
-========================= */
-@utility scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@utility text-gradient {
-  background: linear-gradient(to right, var(--color-brand-primary), var(--color-brand-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
