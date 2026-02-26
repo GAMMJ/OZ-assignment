@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import './App.css';
 
 function App() {
-  const [query, setQuery] = useState('');
+  const [, setQuery] = useState('');
 
   const debounceHandleChange = useMemo(() => {
     let timer;
