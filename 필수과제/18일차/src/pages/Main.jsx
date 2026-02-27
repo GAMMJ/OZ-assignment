@@ -1,21 +1,14 @@
-import { useEffect } from "react"
-import { usePokemonStore } from "../store/pokemonStore"
+import { useSelector } from "react-redux"
 import { Card } from "../component/Card"
 
-const Main = () => {
-  const { pokemonList, fetchMultiplePokemonById } = usePokemonStore()
-
-  useEffect(() => {
-    fetchMultiplePokemonById(151)
-  }, [fetchMultiplePokemonById])
+export default function Main() {
+  const pokemonData = useSelector((state) => state.pokemon.data)
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,160px))] justify-center gap-4">
-      {pokemonList.map((pokemon) => (
-        <Card key={pokemon.id} pokemon={pokemon} />
+    <>
+      {pokemonData.map((el) => (
+        <Card key={el.id} pokemon={el} />
       ))}
-    </div>
+    </>
   )
 }
-
-export default Main

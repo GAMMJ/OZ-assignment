@@ -1,31 +1,16 @@
-import { useParams } from "react-router"
-import { usePokemonStore } from "../store/pokemonStore"
-import { useEffect } from "react"
-import { Loading } from "../component/Loading"
-import { FlipImage } from "../component/FlipImage"
+import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { selectPokemonById } from "../RTK/selector"
 
-const Detail = () => {
+export default function Detail() {
   const { pokemonId } = useParams()
-  const { pokemonList, fetchMultiplePokemonById } = usePokemonStore()
-
-  // 새로고침 시 pokemonList가 비어있으면 가져오기
-  useEffect(() => {
-    if (pokemonList.length === 0) {
-      fetchMultiplePokemonById(151)
-    }
-  }, [fetchMultiplePokemonById, pokemonList.length])
-
-  const pokemon = pokemonList.find((el) => el.id === Number(pokemonId))
+  const pokemon = useSelector(selectPokemonById(Number(pokemonId)))
 
   return (
-    <div className="flex justify-center">
-      <section className="flex flex-col justify-center items-center text-center w-100 min-h-130 p-5 text-[#1e1e1e] bg-white rounded-2xl gap-2.5 shadow-[4px_4px_0px_black]">
-        <div className="text-3xl mb-3">{pokemon.name}</div>
-        <div className="whitespace-pre-wrap text-[18px]">{pokemon.description}</div>
-        <FlipImage front={pokemon.front} back={pokemon.back} />
-      </section>
+    <div className="bg-white flex flex-col justify-center items-center border py-[30px] px-[60px] rounded-[10px] border-b-[8px] border-r-[8px] border-black text-black  ">
+      <div className="text-[28px] mb-[10px]">{pokemon.name}</div>
+      <div className="whitespace-pre-wrap text-center">{pokemon.description}</div>
+      <img className="w-[200px]" src={pokemon.front} alt={pokemon.name} />
     </div>
   )
 }
-
-export default Detail

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "daisyui";
 
 @font-face {
   font-family: "NeoDonggeunmo";
@@ -7,7 +6,6 @@
   font-weight: normal;
   font-display: swap;
 }
-
 html {
   font-family: "NeoDonggeunmo";
 }
