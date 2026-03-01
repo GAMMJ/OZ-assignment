@@ -2,10 +2,11 @@ import { memo, useState } from "react"
 import CheckBox from "./CheckBox"
 import { useTodoDispatch } from "../context/TodoContext"
 
-const Todo = memo(({ todo }) => {
+const Todo = memo(({ todo, index, handleDragStart, handleDragOver, handleDrop }) => {
   const dispatch = useTodoDispatch()
   const [inputValue, setInputValue] = useState("")
   const [isEdit, setIsEdit] = useState(false)
+  const [isDraggable, setIsDraggable] = useState(true)
 
   const editTodo = () => {
     if (isEdit) {
@@ -33,6 +34,10 @@ const Todo = memo(({ todo }) => {
   return (
     <li
       className={`flex justify-start items-center gap-[10px] p-[13px] text-[#1e1e1e] rounded-[15px] ${todo.completed ? "bg-[#A6A6A6]" : "bg-white"}`}
+      draggable={isDraggable}
+      onDragStart={() => handleDragStart(index)}
+      onDragOver={(e) => handleDragOver(index, e)}
+      onDragEnd={handleDrop}
     >
       <CheckBox todo={todo} />
       {todo.completed ? <del className="mr-auto">{todo.content}</del> : <span className="mr-auto">{todo.content}</span>}
@@ -67,6 +72,14 @@ const Todo = memo(({ todo }) => {
       >
         삭제
       </button>
+      <div
+        className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 px-1"
+        onMouseEnter={() => setIsDraggable(true)}
+        onMouseLeave={() => setIsDraggable(false)}
+        title="드래그하여 순서 변경"
+      >
+        ⠿
+      </div>
     </li>
   )
 })
