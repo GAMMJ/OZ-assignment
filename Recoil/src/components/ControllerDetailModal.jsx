@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSetRecoilState } from 'recoil';
-import MOCK_DATA from '../recoil/atam';
+import MOCK_DATA from '../recoil/atom';
 
 const ControllerDetailModal = ({ onClose }) => {
   // recoil을 이용하여 상태관리를 하도록 변경합니다.

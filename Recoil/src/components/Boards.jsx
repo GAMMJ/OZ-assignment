@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BoardDetailModal from './BoardDetailModal';
 import { useRecoilValue } from 'recoil';
-import MOCK_DATA from '../recoil/atam';
+import MOCK_DATA from '../recoil/atom';
 
 const typeToKorean = type => {
   switch (type) {
