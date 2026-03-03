@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchMultiplePokemonById } from "./thunk"
 
-export const pokemontSlice = createSlice({
+export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
     data: [],
